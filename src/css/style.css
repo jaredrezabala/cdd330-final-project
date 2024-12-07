@@ -1,0 +1,147 @@
+/* Variables */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --accent-color: #007bff;
+    --error-color: #ff4c4c;
+  }
+  
+  [data-theme="dark"] {
+    --bg-color: #1c1c1c;
+    --text-color: #e0e0e0;
+    --accent-color: #1e90ff;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--accent-color);
+    color: #fff;
+  }
+  
+  .theme-toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .main {
+    padding: 1rem;
+  }
+  
+  .search-section {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .search-section input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 5px;
+  }
+  
+  .search-section button {
+    padding: 0.5rem 1rem;
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .error-message {
+    color: var(--error-color);
+    margin-top: 0.5rem;
+  }
+  
+  .weather-section,
+  .forecast-section {
+    margin-bottom: 2rem;
+  }
+  
+  .weather-details {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .weather-details img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .forecast-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+  
+  .forecast-card {
+    background: var(--accent-color);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--accent-color);
+    color: #fff;
+  }
+  .suggestions {
+    position: absolute; /* Posiciona la lista relativa a la barra de búsqueda */
+    top: 100%; /* Colócala justo debajo del input */
+    left: 0;
+    right: 0;
+    background-color: #fff; /* Asegúrate de que sea visible */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+    max-height: 200px; /* Limita la altura */
+    overflow-y: auto; /* Habilita desplazamiento si hay muchas sugerencias */
+  }
+  
+  .suggestions li {
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  
+  .suggestions li:hover {
+    background-color: #f0f0f0; /* Resalta la opción bajo el cursor */
+  }
+  .search-section {
+    position: relative;
+  }
+  
+  
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .search-section {
+      flex-direction: column;
+    }
+  }
+  

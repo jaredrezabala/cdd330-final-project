@@ -1,147 +1,231 @@
 /* Variables */
 :root {
-    --bg-color: #ffffff;
-    --text-color: #333333;
-    --accent-color: #007bff;
-    --error-color: #ff4c4c;
-  }
-  
-  [data-theme="dark"] {
-    --bg-color: #1c1c1c;
-    --text-color: #e0e0e0;
-    --accent-color: #1e90ff;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: var(--accent-color);
-    color: #fff;
-  }
-  
-  .theme-toggle {
-    background: none;
-    border: none;
-    color: inherit;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  
-  .main {
-    padding: 1rem;
-  }
-  
+  --background-color: #ffffff;
+  --text-color: #333333; /* Texto más oscuro para mejor legibilidad */
+  --header-color: #0078d4; /* Cambiado a un azul para mejor contraste */
+  --button-color: #0078d4; /* Color de fondo para botones */
+  --button-text-color: #ffffff; /* Texto blanco */
+  --accent-color: #0078d4; /* Asegúrate de definir esta variable si no lo está */
+  --error-color: #ff0000; /* Para mensajes de error */
+}
+
+[data-theme="dark"] {
+  --background-color: #121212;
+  --text-color: #e0e0e0; /* Texto más claro en modo oscuro */
+  --header-color: #1f1f1f;
+  --button-color: #444; /* Botones en modo oscuro */
+  --button-text-color: #ffffff;
+  --accent-color: #333333; /* Ajuste para el tema oscuro */
+}
+
+/* Estilos generales */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  color: #ffffff;
+  background-color: var(--header-color);
+}
+
+#search-btn {
+  background-color: var(--header-color);
+  color: #ffffff;
+  border: 1px solid #aaa;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+#search-btn:hover {
+  background-color: #005a8e; /* Color más oscuro al pasar el ratón */
+  transform: scale(1.05); /* Efecto de aumento sutil */
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.main {
+  padding: 1rem;
+}
+
+.search-section {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.search-section input {
+  flex: 1;
+  padding: 0.6rem;
+  border: 2px solid lightgrey;
+  border-radius: 25px;
+  transition: border-color 0.3s ease;
+}
+
+.search-section input:focus {
+  border-color: var(--header-color);
+}
+
+.search-section button {
+  padding: 0.6rem 1.2rem;
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.search-section button:hover {
+  background-color: #005a8e; /* Color más oscuro al pasar el ratón */
+  transform: scale(1.05); /* Efecto de aumento sutil */
+}
+
+.error-message {
+  color: var(--error-color);
+  margin-top: 0.5rem;
+}
+
+.weather-section,
+.forecast-section {
+  margin-bottom: 2rem;
+}
+
+/* Sección del clima actual */
+.weather-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  justify-content: center; /* Centrar en todas las vistas */
+}
+
+.weather-details img {
+  width: 70px;
+  height: 70px;
+}
+.weather-details .temp {
+  font-size: 2rem; /* Aumentar el tamaño de la temperatura */
+  font-weight: bold;
+}
+
+.weather-details .description {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Sección de pronóstico */
+.forecast-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.forecast-card {
+  background: var(--accent-color);
+  color: white; /* Asegura que el texto en las tarjetas sea visible */
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.forecast-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más fuerte al pasar el ratón */
+}
+
+.forecast-card .forecast-details {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-top: 0.5rem;
+}
+
+/* Ocultar elementos */
+.hidden {
+  display: none;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--header-color);
+  color: var(--text-color);
+  color: #fff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Sugerencias */
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.suggestions li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.suggestions li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  /* Para dispositivos móviles */
   .search-section {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    flex-direction: column;
   }
-  
-  .search-section input {
-    flex: 1;
-    padding: 0.5rem;
-    border: 1px solid var(--accent-color);
-    border-radius: 5px;
-  }
-  
-  .search-section button {
-    padding: 0.5rem 1rem;
-    background-color: var(--accent-color);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .error-message {
-    color: var(--error-color);
-    margin-top: 0.5rem;
-  }
-  
-  .weather-section,
-  .forecast-section {
-    margin-bottom: 2rem;
-  }
-  
+
+  /* Centrar weather-details */
   .weather-details {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    justify-content: center; /* Asegura que se mantenga centrado */
   }
-  
-  .weather-details img {
-    width: 50px;
-    height: 50px;
-  }
-  
+
+  /* Mostrar forecast-cards en una sola columna */
   .forecast-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1rem;
+    grid-template-columns: 1fr; /* Una sola columna */
   }
-  
-  .forecast-card {
-    background: var(--accent-color);
-    color: #fff;
-    padding: 1rem;
-    border-radius: 5px;
-    text-align: center;
+}
+
+@media (min-width: 769px) {
+  /* Para pantallas de escritorio */
+  .weather-details {
+    justify-content: center; /* Asegura que se mantenga centrado */
   }
-  
-  .hidden {
-    display: none;
+
+  .forecast-container {
+    grid-template-columns: repeat(5, 1fr); /* 5 columnas */
   }
-  
-  .footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: var(--accent-color);
-    color: #fff;
-  }
-  .suggestions {
-    position: absolute; /* Posiciona la lista relativa a la barra de búsqueda */
-    top: 100%; /* Colócala justo debajo del input */
-    left: 0;
-    right: 0;
-    background-color: #fff; /* Asegúrate de que sea visible */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
-    max-height: 200px; /* Limita la altura */
-    overflow-y: auto; /* Habilita desplazamiento si hay muchas sugerencias */
-  }
-  
-  .suggestions li {
-    padding: 8px 12px;
-    cursor: pointer;
-  }
-  
-  .suggestions li:hover {
-    background-color: #f0f0f0; /* Resalta la opción bajo el cursor */
-  }
-  .search-section {
-    position: relative;
-  }
-  
-  
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .search-section {
-      flex-direction: column;
-    }
-  }
-  
+}

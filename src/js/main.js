@@ -12,7 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchButton = document.getElementById('search-btn');
   const errorMessage = document.getElementById('error-message');
   const weatherSection = document.getElementById('current-weather');
+  const themeToggleButton = document.querySelector('.theme-toggle');
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  const htmlElement = document.documentElement;
 
+  htmlElement.setAttribute('data-theme', currentTheme);
+  themeToggleButton.textContent = currentTheme === 'dark' ? '🌙' : '🌞';
+
+  themeToggleButton.addEventListener('click', () => {
+    const newTheme = htmlElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    htmlElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    themeToggleButton.textContent = newTheme === 'dark' ? '🌙' : '🌞';
+  });
   // Buscar sugerencias mientras el usuario escribe
   searchInput.addEventListener('input', (event) => {
     const query = event.target.value.trim();
